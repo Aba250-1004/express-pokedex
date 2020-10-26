@@ -4,6 +4,7 @@ const router = express.Router();
 const axios = require('axios');
 const ejsLayouts = require('express-ejs-layouts');
 const db = require('../models');
+const { response } = require('express');
 
 router.use(express.urlencoded({extended:false}))
 
@@ -23,11 +24,11 @@ router.post('/', function(req, res) {
   // TODO: Get form data and add a new record to DB
   axios.get("https://pokeapi.co/api/v2/pokemon/"+req.body.name+"")
   .then((response)=>{
-    console.log("here")
-    // respoonse.data.id
-    console.log(response.data.id)
-    // respoonse.data.name
-    console.log(response.data.name)
+    // console.log("here")
+    // // respoonse.data.id
+    // console.log(response.data.id)
+    // // respoonse.data.name
+    // console.log(response.data)
     db.fave.findOrCreate({
       where:{
         name:response.data.name
@@ -43,5 +44,13 @@ router.post('/', function(req, res) {
   })
   // res.send(req.body);
 });
+
+router.get("/:id",function(req,res){
+  console.log(req.params.id)
+  axios.get("https://pokeapi.co/api/v2/pokemon/"+req.params.id+"")
+  .then((response)=>{
+    res.render('./pokemon/show',{data:response.data})
+  })
+})
 
 module.exports = router;

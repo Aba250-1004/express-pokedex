@@ -3,6 +3,6 @@
 
 <ul>
 <% for (fave of faveList) { %> 
-    <li>Pokemon Name: <%= fave.name %> Pokemon ID: <%= fave.id %>  </li>
+    <li>Pokemon Name: <%= fave.name %> Pokemon ID: <a href="pokemon/<%= fave.id %>"><%= fave.id %></a> </li>
 <% } %> 
 </ul>

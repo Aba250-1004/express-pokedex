@@ -1,0 +1,13 @@
+<h1>Hi! My name is <%= data.forms[0].name %></h1> 
+
+<img src='<%- data.sprites.other.dream_world.front_default %>'>
+
+<h3>MOVES</h3>
+<ul>
+<% for(move of data.moves) { %> 
+    <li>
+    <%= move.move.name %> 
+    </li>       
+<% } %> 
+</ul>
+
